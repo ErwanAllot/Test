@@ -15,9 +15,9 @@ datas["rentals"].each do |rental|
     car_s_price_per_day = "#{datas["cars"][rental['car_id']-1]['price_per_day']}".to_i
 
     # decreasing pricing for longer rentals constant
-    small = car_s_price_per_day = car_s_price_per_day - (car_s_price_per_day * 10 / 100)
-    middle = car_s_price_per_day = car_s_price_per_day - (car_s_price_per_day * 30 / 100)
-    big = car_s_price_per_day = car_s_price_per_day / 2
+    small = car_s_price_per_day - (car_s_price_per_day * 10 / 100)
+    middle = car_s_price_per_day - (car_s_price_per_day * 30 / 100)
+    big = car_s_price_per_day / 2
 
     n = number_of_rental_days
 
@@ -28,16 +28,11 @@ datas["rentals"].each do |rental|
     when 2..4
         time_component = (n - 1) * small + car_s_price_per_day
     when 5..10
-        time_component = (n - 4) * middle + ()
+        time_component = (n - 4) * middle + 3 * small + car_s_price_per_day 
     when 11..
-        car_s_price_per_day = car_s_price_per_day / 2
+        time_component = (n - 10) * big + 6 * middle + 3 * small + car_s_price_per_day 
     end
 
-
-
-
-
-    time_component = number_of_rental_days * car_s_price_per_day
 
     number_of_km = rental['distance']
     car_s_price_per_km = "#{datas["cars"][rental['car_id']-1]['price_per_km']}".to_i
